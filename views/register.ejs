@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advisoropedia Page</title>
+    <link type="text/css" rel="stylesheet" href="css/registration.css">
+    <link rel="shortcut icon" href="/Images/favicon (2).ico" type="image/x-icon" />
+    
+    <script>
+        function validateForm() {
+            // Check if any input field is empty
+            var inputs = document.getElementsByClassName('input-field');
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value === '') {
+                    alert("Please fill all fields");
+                    return false;
+                }
+            }
+
+            // Check if the phone number is exactly 10 digits long
+            var phoneNumber = document.getElementById('number').value;
+            if (phoneNumber.length !== 10) {
+                alert("10 digit phone number only !!");
+                return false;
+            }
+
+            var email = document.getElementsByName('email')[0].value;
+            if (!email.match(/@google|@yahoo/)) {
+                alert("Email should be from Google or Yahoo domain");
+                return false;
+            }
+
+            var email = document.getElementsByName('email')[0].value;
+            if (email.indexOf('@') === -1) {
+                alert("Email should contain '@' symbol");
+                return false;
+            }
+
+            var domain = email.substring(atIndex + 1);
+            if (!isValidDomain(domain)) {
+                alert("Email should have a valid domain name after '@'");
+                return false;
+            }
+
+            return true; // Form is valid
+        }
+    </script>
+
+</head>
+<body>
+    <h1 style="color : rgb(30 225 158);"> <%= title %> </h1>
+    <h1 style="color : rgb (65, 211, 7);"> <%= password %> </h1>
+    <h1 style="color : rgb (255, 0, 200);"> <%= email %> </h1>
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+        <!-- sign up -->
+        <div class="signup">
+            <form class="fill" action="/register" method="post" onsubmit="return validateForm()">
+                <label id="signup" for="chk" aria-hidden="true">Sign Up</label>
+                <input type="text" name="fname" class="input-field" placeholder="First Name" title="Please fill this field">
+                <input type="text" name="lname" class="input-field" placeholder="Last Name" title="Please fill this field">
+                <input type="text" id="number" class="input-field" name="number" placeholder="Phone number (+91xxxxxxxxxx)" title="Please fill this field">
+                <input type="email" class="input-field" name="email" placeholder="User email" title="Please fill this field">
+                <input type="password" class="input-field" name="password" placeholder="Password" title="Please fill this field">
+                <input type="password" class="input-field" name="cpassword" placeholder="Confirm password" title="Please fill this field">
+                <input type="file" name="image" />
+                <button id="submit" type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
